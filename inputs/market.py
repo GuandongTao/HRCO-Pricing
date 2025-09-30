@@ -1,29 +1,31 @@
 from dataclasses import dataclass
-from typing import Union
 import numpy as np
 import warnings
+from types.types import ArrayLike, as_array
+
 
 @dataclass(frozen=True)
 class Forwards:
-    F_power: Union[float, np.ndarray]
-    F_gas: Union[float, np.ndarray]
-    F_ghg: Union[float, np.ndarray] = 0.0
+    F_power: ArrayLike
+    F_gas: ArrayLike
+    F_ghg: ArrayLike = 0.0
+
 
 @dataclass(frozen=True)
 class Vols:
-    vol_power: Union[float, np.ndarray]
-    vol_gas: Union[float, np.ndarray]
+    vol_power: ArrayLike
+    vol_gas: ArrayLike
 
 
 @dataclass(frozen=True)
 class Corr:
-    rho_pg: Union[float, np.ndarray]
+    rho_pg: ArrayLike
 
     def __post_init__(self):
         """Warn if correlation is outside [0, 1] range"""
-        rho = self.rho_pg
+        rho = as_array(self.rho_pg)
 
-        if np.isscalar(rho):
+        if np.isscalar(self.rho_pg):
             if rho < 0.0 or rho > 1.0:
                 warnings.warn(
                     f"Correlation {rho:.4f} is outside [0, 1] range. "
@@ -47,6 +49,4 @@ class Corr:
 
 @dataclass(frozen=True)
 class Df:
-    r: Union[float, np.ndarray]
-
-
+    r: ArrayLike

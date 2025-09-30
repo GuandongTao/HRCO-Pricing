@@ -1,8 +1,8 @@
 from dataclasses import dataclass
+import numpy as np
 from inputs.contracts import HeatRateCallSpec
 from inputs.market import Forwards, Vols, Corr, Df
-from typing import Union
-import numpy as np
+from types.types import ArrayLike, FloatArray, as_array
 
 
 @dataclass(frozen=True)
@@ -21,28 +21,33 @@ class PricingContext:
         for field_name in ['h', 'K', 'settle_t', 'vom', 'quantity', 'gas_adder',
                            'start_cost', 'c_allowance', 'tp_cost', 'start_fuel']:
             val = getattr(self.contract, field_name)
-            if isinstance(val, np.ndarray):
-                lengths.append((f'contract.{field_name}', len(val)))
+            arr = as_array(val)
+            if arr.ndim > 0:
+                lengths.append((f'contract.{field_name}', len(arr)))
 
         # Collect lengths from forwards
         for field_name in ['F_power', 'F_gas', 'F_ghg']:
             val = getattr(self.forwards, field_name)
-            if isinstance(val, np.ndarray):
-                lengths.append((f'forwards.{field_name}', len(val)))
+            arr = as_array(val)
+            if arr.ndim > 0:
+                lengths.append((f'forwards.{field_name}', len(arr)))
 
         # Collect lengths from vols
         for field_name in ['vol_power', 'vol_gas']:
             val = getattr(self.vols, field_name)
-            if isinstance(val, np.ndarray):
-                lengths.append((f'vols.{field_name}', len(val)))
+            arr = as_array(val)
+            if arr.ndim > 0:
+                lengths.append((f'vols.{field_name}', len(arr)))
 
         # Collect lengths from corr
-        if isinstance(self.corr.rho_pg, np.ndarray):
-            lengths.append(('corr.rho_pg', len(self.corr.rho_pg)))
+        val = as_array(self.corr.rho_pg)
+        if val.ndim > 0:
+            lengths.append(('corr.rho_pg', len(val)))
 
         # Collect lengths from df
-        if isinstance(self.df.r, np.ndarray):
-            lengths.append(('df.r', len(self.df.r)))
+        val = as_array(self.df.r)
+        if val.ndim > 0:
+            lengths.append(('df.r', len(val)))
 
         # Check if all lengths are the same
         if lengths:
@@ -55,5 +60,5 @@ class PricingContext:
                 )
 
     @property
-    def T(self) -> Union[float, np.ndarray]:
+    def T(self) -> ArrayLike:
         return self.contract.settle_t

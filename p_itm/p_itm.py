@@ -1,11 +1,14 @@
-from typing import Union, Protocol
+from typing import Protocol
 import numpy as np
 from inputs.context import PricingContext
+from types.types import FloatArray
 from dataclasses import replace
 
+
 class Pricer(Protocol):
-    def price(self, ctx: PricingContext) -> Union[float, np.ndarray]:
+    def price(self, ctx: PricingContext) -> FloatArray:
         ...
+
 
 class ExerciseProbability:
     """
@@ -18,7 +21,7 @@ class ExerciseProbability:
         self.pricer = pricer
         self.dK = dK
 
-    def calculate(self, ctx: PricingContext, clamp: bool = False) -> Union[float, np.ndarray]:
+    def calculate(self, ctx: PricingContext, clamp: bool = False) -> FloatArray:
         # Price at K + dK
         ctx_up = self._bump_strike(ctx, self.dK)
         price_up = self.pricer.price(ctx_up)
@@ -52,7 +55,7 @@ def calculate_exercise_probability(
         ctx: PricingContext,
         pricer: Pricer = None,
         dK: float = 0.000005
-) -> Union[float, np.ndarray]:
+) -> FloatArray:
     if pricer is None:
         from kirk.kirk import KirkPricer  # import future pricers here
         pricer = KirkPricer()
