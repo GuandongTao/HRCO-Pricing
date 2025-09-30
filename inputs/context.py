@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from pricing.contracts import HeatRateCallSpec
-from pricing.market import Forwards, Vols, Corr, Df
+from inputs.contracts import HeatRateCallSpec
+from inputs.market import Forwards, Vols, Corr, Df
 from typing import Union
 import numpy as np
 

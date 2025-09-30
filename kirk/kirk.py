@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import numpy as np
 from scipy.stats import norm
-from pricing.context import PricingContext
+from inputs.context import PricingContext
 from typing import Union
 
 
