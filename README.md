@@ -35,7 +35,7 @@ A Python library for pricing heat rate call options (spark spread options) using
 Heat rate call options give the holder the right to convert gas to power:
 
 ```
-Payoff = max(Power_Price - h × Gas_Price - Strike - Costs, 0)
+Payoff = max(Power_Price - h × Gas_Price - Strike - Costs, 0) × quantity
 ```
 
 ## Pricing Methods
