@@ -1,0 +1,34 @@
+======================================================================
+HEAT RATE CALL OPTIONS - PRICING SUMMARY REPORT
+======================================================================
+Generated: 2025-09-29 23:55:15
+Total Contracts Priced: 6
+
+----------------------------------------------------------------------
+SCENARIO: Base_Case
+----------------------------------------------------------------------
+Number of contracts: 4
+Total portfolio value: $4,276.09
+Average price per MWh: $61.1372
+Min price per MWh: $57.2484
+Max price per MWh: $64.2031
+
+Top 5 Most Valuable Contracts:
+  Contract_5Y_HR6: $1,566.93 (HR=6.5, T=5.0y)
+  Contract_2Y_HR6: $1,208.40 (HR=6.0, T=2.0y)
+  Contract_1Y_HR7: $858.73 (HR=7.0, T=1.0y)
+  Contract_1Y_HR5: $642.03 (HR=5.0, T=1.0y)
+
+----------------------------------------------------------------------
+SCENARIO: High_Vol
+----------------------------------------------------------------------
+Number of contracts: 2
+Total portfolio value: $1,657.49
+Average price per MWh: $61.0466
+Min price per MWh: $57.9692
+Max price per MWh: $64.1240
+
+Top 5 Most Valuable Contracts:
+  Contract_3Y_HR7: $961.86 (HR=7.5, T=3.0y)
+  Contract_2Y_HR8: $695.63 (HR=8.0, T=2.0y)
+

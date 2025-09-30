@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import numpy as np
 import warnings
-from types.types import ArrayLike, as_array
+from custom_types.types import ArrayLike, as_array
 
 
 @dataclass(frozen=True)

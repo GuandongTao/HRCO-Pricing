@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from types.types import ArrayLike
+from custom_types.types import ArrayLike
 
 
 @dataclass(frozen=True)

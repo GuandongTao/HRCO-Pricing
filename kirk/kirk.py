@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import numpy as np
 from scipy.stats import norm
 from inputs.context import PricingContext
-from types.types import ArrayLike, FloatArray, as_array
+from custom_types.types import ArrayLike, FloatArray, as_array
 
 
 @dataclass(frozen=True)

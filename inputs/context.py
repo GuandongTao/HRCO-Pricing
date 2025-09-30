@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import numpy as np
 from inputs.contracts import HeatRateCallSpec
 from inputs.market import Forwards, Vols, Corr, Df
-from types.types import ArrayLike, FloatArray, as_array
+from custom_types.types import ArrayLike, FloatArray, as_array
 
 
 @dataclass(frozen=True)

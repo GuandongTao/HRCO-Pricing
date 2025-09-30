@@ -1,7 +1,7 @@
 from typing import Protocol
 import numpy as np
 from inputs.context import PricingContext
-from types.types import FloatArray
+from custom_types.types import FloatArray
 from dataclasses import replace
 
 
